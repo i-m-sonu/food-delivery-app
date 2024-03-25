@@ -1,6 +1,9 @@
 import React from "react";
 import "../styles/foot.css";
-
+import FacebookIcon from '@mui/icons-material/Facebook';
+import XIcon from '@mui/icons-material/X';
+import GitHubIcon from '@mui/icons-material/GitHub';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
 const Footer = () => {
   return (
     <>
@@ -27,20 +30,20 @@ const Footer = () => {
             <a href="#">Contact</a>
           </p>
 
-          <p class="footer-company-name">Company Name © 2015</p>
+          <p class="footer-company-name">All Rights Reserved © 2024</p>
         </div>
 
         <div class="footer-center">
           <div>
             <i class="fa fa-map-marker"></i>
             <p>
-              <span>444 S. Cedros Ave</span> Solana Beach, California
+              <span>President House</span> New Delhi, India
             </p>
           </div>
 
           <div>
             <i class="fa fa-phone"></i>
-            <p>+1.555.555.5555</p>
+            <p>+91 1234567809</p>
           </div>
 
           <div>
@@ -60,16 +63,16 @@ const Footer = () => {
 
           <div class="footer-icons">
             <a href="#">
-              <i class="fa fa-facebook"></i>
+              <FacebookIcon />
             </a>
             <a href="#">
-              <i class="fa fa-twitter"></i>
+              <XIcon />
             </a>
             <a href="#">
-              <i class="fa fa-linkedin"></i>
+              <LinkedInIcon/>
             </a>
             <a href="#">
-              <i class="fa fa-github"></i>
+              <GitHubIcon />
             </a>
           </div>
         </div>
