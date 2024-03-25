@@ -1,0 +1,19 @@
+.taste{
+    display: flex;
+    padding: 30px;
+    margin: 30px;
+    justify-content: space-between;
+}
+.img{
+    width: 500px;
+}
+.con{
+    width: 50%;
+}
+.red{
+    color: red;
+    font-size: 60px;
+}
+.small{
+    font-size: 12px;
+}

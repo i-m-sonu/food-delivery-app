@@ -6,7 +6,20 @@
   font-size: 2.5rem;
   line-height: 55px;
 }
-
+.flex{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6rem;
+  /* margin-top: 7rem; */
+  background-color: #fff;
+}
+.cen{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* font-size: xx-large; */
+}
 .hero__title span {
   color: #df2020;
 }

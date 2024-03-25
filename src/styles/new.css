@@ -1,0 +1,55 @@
+.App {
+    font-family: sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    background-color: white;
+  }
+  .redd{
+    color: red;
+    font-size: 2rem;
+  }
+  .naam{
+    color: black;
+    font-size: 2rem;  
+    font-weight: bold;
+  }
+  .App-header {
+    padding: 4rem 0;
+    text-align: center;
+  }
+  
+  h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  p {
+    font-size: 1.2rem;
+    color: #888;
+  }
+  
+  .services {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    width: 90%;
+    /* margin-top: 1rem; */
+  }
+  
+  .service {
+    width: 30%;
+    background-color: #fff;
+    padding: 1rem;
+    /* border-radius: 5px; */
+    /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+  
+  .service h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+  }
+  

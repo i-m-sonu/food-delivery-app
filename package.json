@@ -3,6 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.0",
+    "@mui/icons-material": "^5.15.14",
+    "@mui/material": "^5.15.14",
+    "@mui/styled-engine-sc": "^6.0.0-alpha.18",
     "@reduxjs/toolkit": "^1.6.2",
     "@testing-library/jest-dom": "^5.15.0",
     "@testing-library/react": "^11.2.7",
@@ -12,13 +17,15 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-icons": "^4.8.0",
+    "react-login-page": "^1.0.4",
     "react-paginate": "^8.1.4",
     "react-redux": "^7.2.6",
     "react-router-dom": "^6.2.1",
-    "react-scripts": "4.0.3",
+    "react-scripts": "^5.0.1",
     "reactstrap": "^9.0.1",
     "redux-logger": "^3.0.6",
     "remixicon": "^2.5.0",
+    "styled-components": "^6.1.8",
     "web-vitals": "^1.1.2"
   },
   "scripts": {

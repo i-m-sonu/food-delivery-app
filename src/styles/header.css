@@ -13,7 +13,9 @@
     top: 0px;
   }
 }
-
+.mee{
+ height: 30px;
+}
 .header__shrink {
   position: sticky;
   top: 0;
