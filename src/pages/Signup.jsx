@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 function Signup() {
-  const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleUsernameChange = (event) => {
     setUsername(event.target.value);
@@ -23,23 +23,48 @@ function Signup() {
     setConfirmPassword(event.target.value);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault(); // Prevent default form submission behavior
 
-    // Implement signup logic here (e.g., call an API to create user)
-    // This example is for illustration only, not a secure implementation
+    // Check if passwords match
     if (password !== confirmPassword) {
-      setErrorMessage('Passwords do not match');
+      setErrorMessage("Passwords do not match");
       return;
     }
 
-    // Simulate successful signup (replace with actual API call)
-    console.log('Signup successful!');
-    // Redirect to a different page or handle successful signup here
+    try {
+      const response = await fetch("http://localhost:8080/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ username, email, password, confirmPassword }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+
+      // Assuming successful registration
+      console.log("Signup successful!");
+      // Redirect to a different page or handle successful signup here
+    } catch (error) {
+      console.error("There was an error!", error);
+      setErrorMessage("Error during registration");
+    }
   };
 
   return (
-    <div className="signup-container" style={{display:"flex",flexDirection:'column',justifyContent:"center",alignItems:'center',textAlign:'center'}}>
+    <div
+      className="signup-container"
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+        textAlign: "center",
+      }}
+    >
       <h1>Sign Up</h1>
       {errorMessage && <p className="error-message">{errorMessage}</p>}
       <form onSubmit={handleSubmit}>
@@ -51,7 +76,12 @@ function Signup() {
           onChange={handleUsernameChange}
         />
         <label htmlFor="email">Email:</label>
-        <input type="email" id="email" value={email} onChange={handleEmailChange} />
+        <input
+          type="email"
+          id="email"
+          value={email}
+          onChange={handleEmailChange}
+        />
         <label htmlFor="password">Password:</label>
         <input
           type="password"

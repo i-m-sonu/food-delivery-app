@@ -1,11 +1,43 @@
-import React, { useState } from 'react';
-import '../styles/login.css';
-import { Link } from 'react-router-dom';
+import React, { useState } from "react";
+import "../styles/login.css";
+import { Link } from "react-router-dom";
 
 function Login() {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const handleSubmit = async (event) => {
+    event.preventDefault(); // Prevent default form submission behavior
+
+    try {
+      const response = await fetch("http://localhost:8080/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ username, password }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+
+      const data = await response.json();
+
+      if (response.status === 200) {
+        // Login successful
+        console.log("Login successful!");
+        // Redirect to a different page or handle successful login here
+      } else {
+        // Handle unsuccessful login
+        setErrorMessage("Invalid username or password");
+      }
+    } catch (error) {
+      console.error("There was an error!", error);
+      setErrorMessage("Error during login");
+    }
+  };
 
   const handleUsernameChange = (event) => {
     setUsername(event.target.value);
@@ -13,20 +45,6 @@ function Login() {
 
   const handlePasswordChange = (event) => {
     setPassword(event.target.value);
-  };
-
-  const handleSubmit = (event) => {
-    event.preventDefault(); // Prevent default form submission behavior
-
-    // Implement login logic here (e.g., call an API)
-    // This example is for illustration only, not a secure implementation
-    if (username === 'admin' && password === 'password123') {
-      // Login successful
-      console.log('Login successful!');
-      // Redirect to a different page or handle successful login here
-    } else {
-      setErrorMessage('Invalid username or password');
-    }
   };
 
   return (
