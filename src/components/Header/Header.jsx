@@ -5,10 +5,10 @@ import { Container } from "reactstrap";
 import logo from "../../assets/images/res-logo.png";
 import { NavLink, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
+import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 
 import { cartUiActions } from "../../store/shopping-cart/cartUiSlice";
-import AccountBoxIcon from '@mui/icons-material/AccountBox';
+import AccountBoxIcon from "@mui/icons-material/AccountBox";
 
 import "../../styles/header.css";
 
@@ -102,16 +102,16 @@ const Header = () => {
               <span className="cart__badge">{totalQuantity}</span>
             </span>
             <a href="/Login.jsx">
-<Link to="/Login">
+              {/* <Link to="/Login">
 
           <PersonOutlineIcon/>
-</Link>
+</Link> */}
             </a>
             <span className="mobile__menu" onClick={toggleMenu}>
               <i className="ri-menu-line"></i>
             </span>
           </div>
-          <a href="" ></a>
+          <a href=""></a>
         </div>
       </Container>
     </header>

@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import "../styles/login.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-
+  const navigate = useNavigate();
   const handleSubmit = async (event) => {
     event.preventDefault(); // Prevent default form submission behavior
 
@@ -28,6 +28,7 @@ function Login() {
       if (response.status === 200) {
         // Login successful
         console.log("Login successful!");
+        navigate('/home');
         // Redirect to a different page or handle successful login here
       } else {
         // Handle unsuccessful login

@@ -7,10 +7,47 @@ import { useSelector, useDispatch } from "react-redux";
 import { Container, Row, Col } from "reactstrap";
 import { cartActions } from "../store/shopping-cart/cartSlice";
 import { Link } from "react-router-dom";
+// import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+
 
 const Cart = () => {
+  // const navigate = useNavigate();
+
   const cartItems = useSelector((state) => state.cart.cartItems);
   const totalAmount = useSelector((state) => state.cart.totalAmount);
+  // const dispatch = useDispatch();
+
+
+  // const handleCheckout = async () => {
+   
+  //   try {
+  //     const response = await fetch("http://localhost:8080/checkout", {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify({ totalAmount }), // Send the total amount to the backend
+  //     });
+  //     if (response.ok) {
+  //       // Payment successful, redirect to checkout page
+  //       alert("Payment successful");
+  //       // navigate("/checkout");
+
+  //     } else {
+  //       // Handle error
+  //       console.error("Payment failed");
+  //       alert("Payment failed");
+  //     }
+  //   } catch (error) {
+  //     console.error("Error:", error);
+  //     alert("Error during payment");
+  //   }
+  //   setLoading(false);
+  // };
+
+
+
   return (
     <Helmet title="Cart">
       <CommonSection title="Your Cart" />
@@ -44,7 +81,7 @@ const Cart = () => {
                     <Link to="/pizzas">Continue Shopping</Link>
                   </button>
                   <button className="addTOCart__btn">
-                    <Link to="/checkout">Proceed to checkout</Link>
+                    <Link onClick={handleCheckout} to="/checkout">Proceed to checkout</Link>
                   </button>
                 </div>
               </div>

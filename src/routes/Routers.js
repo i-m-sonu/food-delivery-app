@@ -12,15 +12,16 @@ import SignUp from "../pages/Signup";
 const Routers = () => {
   return (
     <Routes>
-      <Route path="/" element={<Navigate to="/home" />} />
+      
+      <Route path="/" element={<Login />} />
+      
+    
       <Route path="/home" element={<Home />} />
       <Route path="/pizzas" element={<Pizzas />} />
       <Route path="/cart" element={<Cart />} />
       <Route path="/checkout" element={<Checkout />} />
       <Route path="/pizzas/:id" element={<PizzaDetails />} />
-      <Route path="/Login" element={<Login />} />
       <Route path="/SignUp" element={<SignUp />} />
-
     </Routes>
   );
 };

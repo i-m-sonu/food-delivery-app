@@ -70,13 +70,28 @@ app.post("/signup", async (req, res) => {
   }
 });
 
+app.post("/api/checkout", async (req, res) => {
+  try {
+
+    const { totalAmount } = req.body;
+    console.log("Total Amount:", totalAmount);
+
+    alert(totalAmount);
+    // Perform payment processing here
+    // If payment is successful, return a success response
+    res.status(200).json({ message: "Payment successful" });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Internal server error" });
+  }
+});
+
 app.post("/login", async (req, res) => {
   try {
     const { username, password } = req.body;
 
     // Check if the username exists in the database
     const user = await Signup.findOne({ username });
-    const token = await Signup.generateAuthToken();
 
     if (!user) {
       return res
@@ -89,14 +104,16 @@ app.post("/login", async (req, res) => {
       return res.status(400).json({ message: "Invalid password" });
     }
 
-    // If both username and password are correct, consider it a successful login
-    res.status(200).json({ message: "Login successful" });
+    // If both username and password are correct, generate an authentication token
+    const token = await user.generateAuthToken();
+    
+    // Send the token back as a response
+    res.status(200).json({ message: "Login successful", token });
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: "Internal server error" });
   }
 });
-
 app.listen(8080, () => {
   console.log("Server is running on port 8080");
 });
