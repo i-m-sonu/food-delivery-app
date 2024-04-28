@@ -1,53 +1,54 @@
 import React from "react";
 import { ListGroup } from "reactstrap";
-import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { cartUiActions } from "../../../store/shopping-cart/cartUiSlice";
 import CartItem from "./CartItem";
 import "../../../styles/shopping-cart.css";
+import { loadStripe } from '@stripe/stripe-js';
 
 const Carts = () => {
   const dispatch = useDispatch();
   const cartProducts = useSelector((state) => state.cart.cartItems);
   const totalAmount = useSelector((state) => state.cart.totalAmount);
-  const navigate = useNavigate();
 
   const toggleCart = () => {
     dispatch(cartUiActions.toggle());
   };
 
-  const handleCheckout = async (e) => {
-    e.stopPropagation(); // Prevent toggling cart when clicking checkout
+  const handleCheckout = async () => {
     try {
-      const response = await fetch("/api/checkout", {
+      const response = await fetch("http://localhost:8080/checkout", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ totalAmount }), // Send totalAmount as an object
+        body: JSON.stringify({ cartProducts, totalAmount }),
       });
-      console.log("Response status:", response.status);
-      const responseData = await response.json();
-      console.log("Response data:", responseData); // Log response data for debugging
-      if (response.ok) {
-        // Payment successful, redirect to checkout page
-        alert("Payment successful");
-        navigate("/checkout");
-      } else {
-        // Handle error
-        console.error("Payment failed");
-        alert("Payment failed");
+
+      if (!response.ok) {
+        throw new Error("Failed to initiate checkout. Server responded with status: " + response.status);
       }
 
-    } catch (error) {
-      console.error("Error:", error.message); // Log specific error message
-      console.error("Full error:", error); // Log entire error object for detailed information
-      alert("Error during payment");
-    }
-    
+      const responseData = await response.json();
+      const { id: sessionId } = responseData;
 
+      const stripe = await loadStripe("pk_test_51PAR0XSGBiTyUFoFI31jGV7NWzl3fSUSRD7DKlEUcJa9ydWgpBjEO2TklCdqMRL5g99OEAmoDuzliHu3OxUH0yqj00OCX1XOFG");
+
+      const { error } = await stripe.redirectToCheckout({
+        sessionId: sessionId,
+      });
+
+      if (error) {
+        throw new Error(error.message);
+      } else {
+        // Redirect the user after successful checkout
+        window.location.href = "/success"; // Replace "/success" with your desired success page URL
+      }
+    } catch (error) {
+      console.error("Error during checkout:", error);
+      alert("Error during payment: " + error.message);
+    }
   };
-  
 
   return (
     <div className="cart__container">

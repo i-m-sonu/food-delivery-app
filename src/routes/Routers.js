@@ -8,6 +8,8 @@ import Cart from "../pages/Cart";
 import Checkout from "../pages/Checkout";
 import Login from "../pages/Login";
 import SignUp from "../pages/Signup";
+import Sucess from "../pages/Sucess";
+import Cancel from "../pages/Cancel";
 
 const Routers = () => {
   return (
@@ -22,6 +24,9 @@ const Routers = () => {
       <Route path="/checkout" element={<Checkout />} />
       <Route path="/pizzas/:id" element={<PizzaDetails />} />
       <Route path="/SignUp" element={<SignUp />} />
+      <Route path="/sucess" element={<Sucess />} />
+      <Route path="/cancel" element={<Cancel />} />
+
     </Routes>
   );
 };
