@@ -7,8 +7,9 @@ function Login() {
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
+
   const handleSubmit = async (event) => {
-    event.preventDefault(); // Prevent default form submission behavior
+    event.preventDefault();
 
     try {
       const response = await fetch("http://localhost:8080/login", {
@@ -26,16 +27,13 @@ function Login() {
       const data = await response.json();
 
       if (response.status === 200) {
-        // Login successful
-        console.log("Login successful!");
+        // Redirect to home page upon successful login
         navigate('/home');
-        // Redirect to a different page or handle successful login here
       } else {
-        // Handle unsuccessful login
         setErrorMessage("Invalid username or password");
       }
     } catch (error) {
-      console.error("There was an error!", error);
+      console.error("Error during login:", error);
       setErrorMessage("Error during login");
     }
   };
@@ -68,7 +66,7 @@ function Login() {
           onChange={handlePasswordChange}
         />
         <button type="submit">Login</button>
-        <Link to="/SignUp">Don't have an account?create account</Link>
+        <Link to="/signup">Don't have an account? Create one</Link>
       </form>
     </div>
   );

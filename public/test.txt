@@ -1,4 +1,5 @@
 const express = require("express");
+// const jwt = require("jsonwebtoken");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const cors = require("cors");
@@ -16,9 +17,25 @@ const signupSchema = new mongoose.Schema({
   username: String,
   email: String,
   password: String,
+  // tokens: [{ token: { type: String, required: true } }]
 });
 
+// signupSchema.methods.generateAuthToken = async function () {
+//   try {
+//     const token = jwt.sign({ _id: this._id }, process.env.SECRET_KEY);
+//     this.tokens = this.tokens.concat({ token });
+//     await this.save();
+//     return token;
+//   } catch (error) {
+//     console.error(error);
+//     throw new Error("Token generation failed");
+//   }
+// };
+
+
 const Signup = mongoose.model("Signup", signupSchema);
+// const Login = mongoose.model("Login", signupSchema);
+
 
 app.post("/signup", async (req, res) => {
   try {
@@ -84,13 +101,15 @@ app.post("/login", async (req, res) => {
       return res.status(400).json({ message: "Invalid password" });
     }
 
-    res.status(200).json({ message: "Login successful" });
+    // const token = await user.generateAuthToken();
+    // res.status(200).json({ message: "Login successful", token });
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: "Internal server error" });
   }
 });
 
+// const PORT = process.env.PORT || 8080;
 app.listen(8080, () => {
   console.log(`Server is running on port 8080`);
 });

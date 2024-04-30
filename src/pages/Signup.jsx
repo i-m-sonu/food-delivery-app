@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 function Signup() {
   const [username, setUsername] = useState("");
@@ -6,6 +7,7 @@ function Signup() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const navigate = useNavigate();
 
   const handleUsernameChange = (event) => {
     setUsername(event.target.value);
@@ -47,6 +49,7 @@ function Signup() {
 
       // Assuming successful registration
       console.log("Signup successful!");
+      navigate("/");
       // Redirect to a different page or handle successful signup here
     } catch (error) {
       console.error("There was an error!", error);
