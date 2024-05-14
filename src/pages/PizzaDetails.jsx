@@ -31,6 +31,9 @@ const PizzaDetails = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const [extraIngredients, setExtraIngredients] = useState([]);
+
+  // const [extraIngredients, setExtraIngredients] = useState([]);
+
   const [isUpdateNotificationDisplayed, setIsUpdateNotificationDisplayed] = useState(false);
   const product = products.find((product) => product.id === id);
   const cartProducts = useSelector((state) => state.cart.cartItems);
@@ -73,12 +76,14 @@ const PizzaDetails = () => {
     }, [product]);
 
     function updateExtraIngredients(ingredient) {
-      if(extraIngredients.includes(ingredient)) {
+      if (extraIngredients && extraIngredients.includes(ingredient)) {
         setExtraIngredients(extraIngredients.filter(item => item !== ingredient));
       } else {
         setExtraIngredients(previousState => [...previousState, ingredient]);
       }
     }
+    
+    
 
   return (
     <Helmet title="Product-details">
